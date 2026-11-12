@@ -1,10 +1,10 @@
+
 // Floating hearts and flowers
 
 const decorations = ["❤️", "💕", "💗", "🌸", "🌷", "✨"];
 
 function createDecoration() {
     const element = document.createElement("div");
-
     element.classList.add("floating");
 
     element.textContent =
@@ -21,38 +21,50 @@ function createDecoration() {
 
 setInterval(createDecoration, 400);
 
-// Envelope functionality
+
+// Elements
 
 const surpriseBtn = document.getElementById("surpriseBtn");
 const envelopeArea = document.getElementById("envelopeArea");
 const envelope = document.getElementById("envelope");
 const continueBtn = document.getElementById("continueBtn");
+const music = document.getElementById("bgMusic");
 
-if (surpriseBtn && envelopeArea) {
+
+// Surprise button and background music
+
+if (surpriseBtn) {
     surpriseBtn.addEventListener("click", () => {
-        envelopeArea.style.display = "block";
 
-        envelopeArea.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+        if (envelopeArea) {
+            envelopeArea.style.display = "block";
+
+            envelopeArea.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        if (music) {
+            music.play().catch(error => {
+                console.log("Music playback failed:", error);
+            });
+        }
     });
 }
 
-if (envelope && continueBtn) {
 
+// Envelope functionality
+
+if (envelope && continueBtn) {
     envelope.addEventListener("click", () => {
 
         const isOpen = envelope.classList.toggle("open");
 
-        if (isOpen) {
-            continueBtn.style.display = "block";
-        } else {
-            continueBtn.style.display = "none";
-        }
-
+        continueBtn.style.display = isOpen ? "block" : "none";
     });
 }
+
 
 // Navigate to memories page
 
@@ -61,9 +73,3 @@ if (continueBtn) {
         window.location.href = "memories.html";
     });
 }
-const music = document.getElementById("bgMusic");
-const surpriseBtn = document.getElementById("surpriseBtn");
-
-surpriseBtn.addEventListener("click", function () {
-    music.play();
-});

@@ -61,3 +61,9 @@ if (continueBtn) {
         window.location.href = "memories.html";
     });
 }
+const music = document.getElementById("bgMusic");
+const surpriseBtn = document.getElementById("surpriseBtn");
+
+surpriseBtn.addEventListener("click", function () {
+    music.play();
+});

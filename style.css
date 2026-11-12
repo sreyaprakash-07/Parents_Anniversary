@@ -1,0 +1,526 @@
+
+/* ===== BASIC RESET ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #ffe4ec,
+        #fff0f5,
+        #fce1ed,
+        #f8d9e8
+    );
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+/* ===== MAIN CONTAINER ===== */
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 60px 35px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 25px;
+
+    box-shadow: 0 10px 40px rgba(214, 112, 147, 0.2);
+
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+h1 {
+    color: #c05278;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #d47a98;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.container > p {
+    color: #795263;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* ===== BUTTON ===== */
+
+button {
+    padding: 15px 30px;
+    background: #e98aaa;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c05278;
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(192, 82, 120, 0.3);
+}
+
+/* ===== GLOW ANIMATION ===== */
+
+@keyframes glow {
+    from {
+        box-shadow: 0 10px 30px rgba(214, 112, 147, 0.2);
+    }
+
+    to {
+        box-shadow: 0 10px 45px rgba(214, 112, 147, 0.4);
+    }
+}
+
+/* ===== ENVELOPE AREA ===== */
+
+.envelope-area {
+    display: none;
+    margin-top: 55px;
+    padding-top: 20px;
+}
+
+.envelope-area h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+/* Dedicated space for the opening animation */
+
+.envelope-stage {
+    position: relative;
+    height: 560px;
+    width: 100%;
+}
+
+/* ===== ENVELOPE ===== */
+
+.envelope {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 360px;
+    height: 220px;
+
+    background: #e9a5c4;
+    border-radius: 3px;
+
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+/* ===== LETTER ===== */
+
+.letter {
+    position: absolute;
+
+    left: 50%;
+    bottom: 15px;
+
+    transform: translateX(-50%) translateY(0);
+
+    width: 330px;
+    height: 420px;
+
+    padding: 25px 22px;
+
+    background: linear-gradient(
+        145deg,
+        #fffaf0,
+        #fff0f3
+    );
+
+    border: 2px solid #e8c6b8;
+    border-radius: 5px;
+
+    box-shadow: 0 8px 25px rgba(120, 70, 70, 0.15);
+
+    text-align: center;
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 2;
+
+    transition:
+        transform 0.9s ease,
+        opacity 0.7s ease,
+        visibility 0.7s;
+}
+
+/* Letter opens upwards */
+
+.envelope.open .letter {
+    transform: translateX(-50%) translateY(-320px);
+
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== LETTER CONTENT ===== */
+
+.letter-decoration {
+    color: #d47a98;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.letter h3 {
+    color: #a65370;
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.letter p {
+    color: #70515a;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 14px;
+}
+
+.letter-sign {
+    color: #bd6685;
+    font-style: italic;
+    font-size: 16px;
+    margin-top: 18px;
+    padding-bottom: 10px;
+}
+
+/* ===== ENVELOPE FLAP ===== */
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #d982b0;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 58%
+    );
+
+    transform-origin: top;
+    transition: transform 0.7s ease;
+
+    z-index: 4;
+}
+
+/* Flap opens */
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+/* ===== ENVELOPE FRONT ===== */
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+
+    background: #eab0cd;
+
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+/* ===== ENVELOPE HINT ===== */
+
+.envelope-hint {
+    color: #bd6685;
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 0;
+    padding-bottom: 20px;
+}
+
+/* ===== FLOATING DECORATIONS ===== */
+
+.floating {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 10;
+
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== MEMORY GALLERY ===== */
+
+.memories {
+    padding: 80px 8%;
+    text-align: center;
+
+    background: linear-gradient(
+        180deg,
+        #fff0f5,
+        #ffe4ec,
+        #fff5f7
+    );
+}
+
+.memories h2 {
+    font-size: 38px;
+    color: #c05278;
+    margin-bottom: 20px;
+}
+
+.memory-intro {
+    max-width: 600px;
+    margin: 0 auto 55px;
+
+    color: #795263;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* ===== PHOTO GRID ===== */
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 45px 30px;
+
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* ===== PHOTO CARDS ===== */
+
+.photo-card {
+    background: #fffdf9;
+    padding: 12px 12px 22px;
+
+    border-radius: 5px;
+
+    box-shadow: 0 8px 25px rgba(160, 90, 120, 0.18);
+
+    transition: all 0.4s ease;
+
+    position: relative;
+}
+
+/* Slight rotation */
+
+.photo-card:nth-child(odd) {
+    transform: rotate(-3deg);
+}
+
+.photo-card:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+/* Photos */
+
+.photo-card img {
+    width: 100%;
+    height: 240px;
+
+    object-fit: contain;
+
+    background: #fff0f5;
+
+    border-radius: 3px;
+    display: block;
+}
+
+/* Captions */
+
+.photo-card p {
+    font-style: italic;
+    color: #a65370;
+    font-size: 15px;
+    margin: 17px 5px 0;
+}
+
+/* Hover */
+
+.photo-card:hover {
+    transform: translateY(-12px) rotate(0deg) scale(1.04);
+
+    box-shadow: 0 15px 35px rgba(192, 82, 120, 0.3);
+
+    z-index: 5;
+}
+
+/* Final Message */
+
+.memories::after {
+    content: "And their beautiful story continues... ♡";
+
+    display: block;
+    margin-top: 75px;
+
+    font-style: italic;
+    font-size: 25px;
+    color: #c05278;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 800px) {
+
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 500px) {
+
+    .container {
+        width: 94%;
+        padding: 40px 18px;
+        margin: 30px auto;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .container > p {
+        font-size: 15px;
+    }
+
+    .envelope-stage {
+        height: 550px;
+    }
+
+    .envelope {
+        width: 300px;
+        height: 190px;
+    }
+
+    .letter {
+        width: 280px;
+        height: 410px;
+        padding: 22px 18px;
+    }
+
+    .envelope.open .letter {
+        transform: translateX(-50%) translateY(-320px);
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .memories h2 {
+        font-size: 28px;
+    }
+
+    .photo-card img {
+        height: 260px;
+    }
+
+}
+/* Continue button */
+
+.continue-btn {
+    display: none;
+    margin: 20px auto;
+    padding: 13px 25px;
+    background: #d47a98;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+}
+
+.continue-btn:hover {
+    background: #c05278;
+}
+
+/* Memories page */
+
+.memories {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    background: #fff0f5;
+}
+.back-btn {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #f8b6c8, #e8b4e0);
+    color: #7a3d5b;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(200, 120, 160, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 16px rgba(200, 120, 160, 0.35);
+}

@@ -29,9 +29,29 @@ const envelopeArea = document.getElementById("envelopeArea");
 const envelope = document.getElementById("envelope");
 const continueBtn = document.getElementById("continueBtn");
 const music = document.getElementById("bgMusic");
+const resumeMusicBtn = document.getElementById("resumeMusicBtn");
 
 
-// Surprise button and background music
+// Music functionality
+
+function playMusic() {
+    if (music) {
+        music.play().then(() => {
+            sessionStorage.setItem("musicPlaying", "true");
+
+            if (resumeMusicBtn) {
+                resumeMusicBtn.hidden = true;
+            }
+        }).catch(() => {
+            if (resumeMusicBtn) {
+                resumeMusicBtn.hidden = false;
+            }
+        });
+    }
+}
+
+
+// Start music on home page
 
 if (surpriseBtn) {
     surpriseBtn.addEventListener("click", () => {
@@ -45,12 +65,19 @@ if (surpriseBtn) {
             });
         }
 
-        if (music) {
-            music.play().catch(error => {
-                console.log("Music playback failed:", error);
-            });
-        }
+        playMusic();
     });
+}
+
+
+// Resume music on memories page
+
+if (music && sessionStorage.getItem("musicPlaying") === "true") {
+    playMusic();
+}
+
+if (resumeMusicBtn) {
+    resumeMusicBtn.addEventListener("click", playMusic);
 }
 
 

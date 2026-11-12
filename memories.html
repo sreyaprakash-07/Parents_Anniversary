@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +12,29 @@
 
 <body>
 
-<section class="memories">
+    <section class="memories">
 
-    <h2>Our Beautiful Journey ❤️</h2>
+        <h2>Our Beautiful Journey ❤️</h2>
 
-    <a href="index.html" class="back-btn">💌 Back to Our Letter</a>
+        <a href="index.html" class="back-btn">
+            💌 Back to Our Letter
+        </a>
 
-    <p class="memory-intro">
-        Every picture holds a memory,
-        every memory tells a story,
-        and together they make a lifetime of love.
-    </p>
+        <p class="memory-intro">
+            Every picture holds a memory,
+            every memory tells a story,
+            and together they make a lifetime of love.
+        </p>
 
-    <div class="photo-gallery">
+        <!-- BACKUP MUSIC BUTTON -->
+
+        <button id="resumeMusicBtn" hidden>
+            Play Our Music ❤️
+        </button>
+
+        <!-- PHOTO GALLERY -->
+
+        <div class="photo-gallery">
 
             <div class="photo-card">
                 <img src="images/photo1.jpeg" alt="Memory 1">
@@ -88,29 +100,36 @@
 
     </section>
 
-<script src="script.js"></script>
 
-<footer class="love-footer">
-    <h2>Our Love Story Never Ends ❤️</h2>
-    <p>
-        No matter how far apart we are,
-        you both will always be close to my heart.
-    </p>
-    <p class="footer-love">With endless love, forever and always. 💗</p>
-</footer>
-<audio id="bgMusic" loop>
-    <source src="desifreemusic-gentle-romantic-piano-instrumental-royalty-free-music-397373.mp3" type="audio/mpeg">
-</audio>
+    <!-- FOOTER -->
 
-<script>
-    const music = document.getElementById("bgMusic");
+    <footer class="love-footer">
 
-    if (sessionStorage.getItem("musicPlaying") === "true") {
-        music.play().catch(error => {
-            console.log("Playback needs user interaction:", error);
-        });
-    }
-</script>
-    
+        <h2>Our Love Story Never Ends ❤️</h2>
+
+        <p>
+            No matter how far apart we are,
+            you both will always be close to my heart.
+        </p>
+
+        <p class="footer-love">
+            With endless love, forever and always. 💗
+        </p>
+
+    </footer>
+
+
+    <!-- BACKGROUND MUSIC -->
+
+    <audio id="bgMusic" loop>
+        <source src="desifreemusic-gentle-romantic-piano-instrumental-royalty-free-music-397373.mp3"
+            type="audio/mpeg">
+    </audio>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
 </body>
 </html>

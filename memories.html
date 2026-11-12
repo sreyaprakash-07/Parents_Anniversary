@@ -98,6 +98,19 @@
     </p>
     <p class="footer-love">With endless love, forever and always. 💗</p>
 </footer>
+<audio id="bgMusic" loop>
+    <source src="desifreemusic-gentle-romantic-piano-instrumental-royalty-free-music-397373.mp3" type="audio/mpeg">
+</audio>
 
+<script>
+    const music = document.getElementById("bgMusic");
+
+    if (sessionStorage.getItem("musicPlaying") === "true") {
+        music.play().catch(error => {
+            console.log("Playback needs user interaction:", error);
+        });
+    }
+</script>
+    
 </body>
 </html>

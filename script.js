@@ -70,6 +70,7 @@ if (envelope && continueBtn) {
 
 if (continueBtn) {
     continueBtn.addEventListener("click", () => {
+        sessionStorage.setItem("musicPlaying", "true");
         window.location.href = "memories.html";
     });
 }
